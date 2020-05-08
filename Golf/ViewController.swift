@@ -6,6 +6,15 @@
 //  Copyright © 2020 Jared. All rights reserved.
 //
 
+
+/*
+ mulligan indicator/ trac mulligan
+ core data
+    player
+    game
+    hole
+
+ */
 import UIKit
 
 class ViewController: UIViewController {
