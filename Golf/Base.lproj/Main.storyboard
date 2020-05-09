@@ -393,12 +393,6 @@
                                     <constraint firstAttribute="width" constant="200" id="4bH-OD-X86"/>
                                 </constraints>
                             </stackView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose next hole" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-on-Elc">
-                                <rect key="frame" x="325" y="187.5" width="246" height="39.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <nil key="textColor"/>
-                                <color key="highlightedColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </label>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uwa-wt-Gin">
                                 <rect key="frame" x="50" y="261.5" width="173.5" height="91.5"/>
                                 <subviews>
@@ -415,7 +409,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="80.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
-                                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBH-eN-vle">
                                                 <rect key="frame" x="86.5" y="0.0" width="30" height="30"/>
@@ -457,7 +451,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
-                                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6N-Uh-pFZ">
                                                 <rect key="frame" x="86.5" y="0.0" width="30" height="30"/>
@@ -505,7 +499,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
-                                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsu-yj-ffd">
                                                 <rect key="frame" x="86.5" y="0.0" width="30" height="30"/>
@@ -547,7 +541,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
-                                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnI-bS-4Ty">
                                                 <rect key="frame" x="86.5" y="0.0" width="30" height="30"/>
@@ -589,7 +583,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <nil key="textColor"/>
-                                                <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpn-Mc-5rF">
                                                 <rect key="frame" x="86.5" y="0.0" width="30" height="30"/>
@@ -636,6 +630,21 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wut-KZ-osD">
+                                <rect key="frame" x="402" y="225" width="92" height="30"/>
+                                <state key="normal" title="Random Hole">
+                                    <color key="titleColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="randomButton:" destination="4ID-Gx-Jl9" eventType="touchUpInside" id="Rad-LO-KpD"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose next hole" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58r-on-Elc">
+                                <rect key="frame" x="325" y="187.5" width="246" height="39.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sZJ-a8-M1Q" firstAttribute="bottom" secondItem="uwa-wt-Gin" secondAttribute="bottom" constant="40" id="08G-dh-VrS"/>
@@ -651,11 +660,13 @@
                             <constraint firstAttribute="bottom" secondItem="ECI-oO-VM5" secondAttribute="bottom" constant="11" id="IDy-SJ-MQW"/>
                             <constraint firstItem="j7B-N9-i9w" firstAttribute="centerX" secondItem="uOJ-Nx-8YG" secondAttribute="centerX" id="KpC-8E-sLR"/>
                             <constraint firstItem="P2r-qw-t6H" firstAttribute="top" secondItem="sZJ-a8-M1Q" secondAttribute="top" constant="235" id="KpM-hL-44H"/>
+                            <constraint firstItem="wut-KZ-osD" firstAttribute="centerX" secondItem="uOJ-Nx-8YG" secondAttribute="centerX" id="MNF-IC-kq3"/>
                             <constraint firstItem="FiE-sY-DtS" firstAttribute="leading" secondItem="sZJ-a8-M1Q" secondAttribute="leading" constant="354" id="Nvi-Z7-vvc"/>
                             <constraint firstItem="sZJ-a8-M1Q" firstAttribute="trailing" secondItem="P2r-qw-t6H" secondAttribute="trailing" constant="224" id="QFa-tB-xjJ"/>
                             <constraint firstItem="Dig-8b-okc" firstAttribute="top" secondItem="sZJ-a8-M1Q" secondAttribute="top" constant="294" id="S1h-R3-SQP"/>
                             <constraint firstItem="sYZ-z7-6IJ" firstAttribute="centerX" secondItem="uOJ-Nx-8YG" secondAttribute="centerX" id="WAa-XS-lRp"/>
                             <constraint firstItem="3FW-Rj-69o" firstAttribute="leading" secondItem="sZJ-a8-M1Q" secondAttribute="leading" constant="486" id="Y9m-wd-dxV"/>
+                            <constraint firstItem="wut-KZ-osD" firstAttribute="top" secondItem="FiE-sY-DtS" secondAttribute="bottom" constant="45" id="Z72-j4-eSc"/>
                             <constraint firstItem="58r-on-Elc" firstAttribute="centerY" secondItem="uOJ-Nx-8YG" secondAttribute="centerY" id="cd7-77-0Jx"/>
                             <constraint firstItem="58r-on-Elc" firstAttribute="centerX" secondItem="uOJ-Nx-8YG" secondAttribute="centerX" id="ddi-gZ-cTm"/>
                             <constraint firstItem="lyc-rF-hga" firstAttribute="top" secondItem="sZJ-a8-M1Q" secondAttribute="top" constant="293" id="jGn-xG-xzK"/>
@@ -716,6 +727,7 @@
                         <outlet property="player5_s" destination="uqV-W6-gnN" id="T8F-4W-6cH"/>
                         <outlet property="player5_ss" destination="cHW-Af-NQS" id="K7m-4z-g4b"/>
                         <outlet property="player5_sv" destination="JgF-bB-oFZ" id="pc7-GP-z68"/>
+                        <outlet property="randView" destination="wut-KZ-osD" id="qzQ-64-mDY"/>
                         <outlet property="resultsView" destination="uwa-wt-Gin" id="z5T-g2-OTo"/>
                         <outlet property="scoreboardView" destination="7fj-Yx-Y2p" id="3mJ-cf-eqV"/>
                         <outlet property="startView" destination="sYZ-z7-6IJ" id="mJa-ns-ToV"/>

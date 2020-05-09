@@ -165,7 +165,11 @@ class GameViewController: UIViewController {
     @IBAction func exitBfalse(_ sender: Any) {
         exitView.isHidden = true
         exitViewb.isHidden = true
+        if holePrompt.text == "Choose Next Hole"{
+            randView.isHidden = false
+        }
         holePrompt.isHidden = false
+        
     }
     
     @IBOutlet weak var holeCount: UILabel!
@@ -173,6 +177,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var startView: UIStackView!
     
     @IBOutlet weak var holePrompt: UILabel!
+    @IBOutlet weak var randView: UIButton!
+    
     
     @IBOutlet weak var addButton: UIButton!
     
@@ -286,12 +292,21 @@ class GameViewController: UIViewController {
             playHole()
         }
     }
+    @IBAction func randomButton(_ sender: Any) {
+        choose = false
+        prev = current
+        var lst = [1,2,3,4,5,6,7]
+        lst.removeAll {$0 == current}
+        current = lst.randomElement()!
+        playHole()
+    }
     @IBAction func tiebreak(_ sender: Any) {
     }
     @IBAction func end(_ sender: Any) {
         holePrompt.isHidden = true
         exitView.isHidden = false
         exitViewb.isHidden = false
+        randView.isHidden = true
     }
     @IBAction func quit(_ sender: Any) {
     }
@@ -300,6 +315,7 @@ class GameViewController: UIViewController {
         startView.isHidden = true
         holePrompt.text = "Choose Next Hole"
         togglePrompt(b: false)
+        randView.isHidden = false
         resultsView.isHidden = false
         scoreboardView.isHidden = false
         var lst = [String]()
@@ -314,6 +330,7 @@ class GameViewController: UIViewController {
     func playHole(){
         background.image = UIImage(named: "\(String(prev) + "-" + String(current))")
         togglePrompt(b:false)
+        randView.isHidden = true
         holePrompt.text = "Enter Scores"
         addButton.isEnabled = true
     }
@@ -324,7 +341,11 @@ class GameViewController: UIViewController {
         var lst = [current]
         for i in 0...(players.count - 1){
             scores[i] = scores[i] + Int(players_rs[i].text!)! - 2
-            players_ss[i].text = String(scores[i])
+            if scores[i] > 0{
+                players_ss[i].text = "+\(String(scores[i]))"
+            }
+            else{
+                players_ss[i].text = String(scores[i])}
             lst.append(Int(players_rs[i].text!)!)
         }
         game.add(hole: lst)
@@ -335,6 +356,7 @@ class GameViewController: UIViewController {
         togglePrompt(b: false)
         addButton.isEnabled = false
         choose = true
+        randView.isHidden = false
         
     }
     
