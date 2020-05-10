@@ -7,16 +7,36 @@
 //
 
 import UIKit
+import CoreData
 
 
-class Game{
+class GameSub{
     var box: [[Int]]
     var players: [String]
     var date = Date()
+    var holes = 0
+    var tiebreak = 0
+    var stats = [String:Int]()
+    var results = [String:Int]()
     init(players:[String]){
         box = [[Int]]()
         self.players = players
+        for p in players{
+            stats[p] = 0
+            results[p] = 1
+        }
     }
+    func setResults(){
+        for p in players{
+            for q in players{
+                if p == q{}
+                else if stats[p]! > stats[q]!{
+                    results[p]! += 1
+                }
+            }
+        }
+    }
+    
     func add(hole:[Int]){
         box.append(hole)
     }
@@ -71,33 +91,17 @@ class Game{
         return s1
     }
 }
-class Player{
-    var name = ""
-    var score = 0
-    var spot = 0
-    var chart = [[Int]]()
-    func add(shots:Int, hole:Int){
-        if spot == 0{
-            spot += 1
-            chart[0][0] = 1
-            chart[1][0] = 0
-        }
-        spot += 1
-        chart[0][spot] = hole
-        chart[1][spot] = shots
-        score += shots
-    }
-    
-    
-}
-
 class GameViewController: UIViewController {
+    
+    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
 
     var hole = 1
     var prev = 1
     var current = 1
     var choose = true
-    var game = Game(players: [])
+    var game = GameSub(players: [])
     
     var scores = [0,0,0,0,0]
     var players = [UITextField]()
@@ -155,10 +159,84 @@ class GameViewController: UIViewController {
     @IBOutlet weak var exitView: UIStackView!
     
     @IBAction func exitBtrue(_ sender: Any) {
+        let fet: NSFetchRequest<Hole> = Hole.fetchRequest()
+        do{
+            let result = try context.fetch(fet)
+            if result.isEmpty{
+                seedHoles()
+            }
+        }
+        catch{}
+        game.setResults()
         performSegue(withIdentifier: "game", sender: self)
+        let g = Game(context: context)
+        g.bonus = Int16(hole - 1 - game.tiebreak)
+        g.box = game.box
+        g.date = game.date
+        g.holes = Int16(hole-1)
+        g.id = UUID()
+        g.players = game.players
+        var playerst = game.players
+        let fetchRequest: NSFetchRequest<Player> = Player.fetchRequest()
+        do {
+            let result = try context.fetch(fetchRequest)
+            for p in result{
+                print(p.name)
+                if playerst.contains(p.name){
+                    p.addToGame(g)
+                    p.games += 1
+                    let a = p.lows[(hole - 1 - ((hole - 1) % 9)) / 9]
+                    if a > game.stats[p.name]!{
+                        p.lows[(hole - 1 - ((hole - 1) % 9)) / 9] = Int16(game.stats[p.name]!)
+                    }
+                    p.holes += Int16(hole - 1)
+                    if game.results[p.name] == 1{
+                        p.wins += 1
+                    }
+                    else if game.results[p.name] == game.players.count{
+                        p.losses += 1
+                    }
+                    p.score += Int16(game.stats[p.name]!)
+                    p.fin += Int16(game.results[p.name]!)
+                    playerst.removeAll {$0 == p.name}
+                    print("a")
+                    
+                }}
+            for p in playerst{
+                let play = Player(context: context)
+                play.name = p
+                play.lows = [99,99,99,99,99,99,99,99,99,99,99,99]
+                play.lows[(hole - 1 - ((hole - 1) % 9)) / 9] = Int16(game.stats[play.name]!)
+                play.games = 1
+                play.holes = Int16(hole - 1)
+                play.losses = 0
+                if game.results[play.name] == game.players.count{
+                    play.losses = 1
+                }
+                play.wins = 0
+                if game.results[play.name] == 1{
+                    play.wins = 1
+                }
+                play.score = Int16(game.stats[play.name]!)
+                play.fin = Int16(game.results[play.name]!)
+                let fetcher: NSFetchRequest<Hole> = Hole.fetchRequest()
+                print("b")
+                do{
+                    let holes = try context.fetch(fetcher)
+                    for h in holes{
+                        h.stats?[p] = ["times":0,"score":0,"ace":0,"par":0,"bogey":0,"double":0,"mull":0,"worse":0]
+                    }
+                }
+                catch{}
+            }
+            }
+        catch{}
+        appDelegate.saveContext()
+        updateHoles()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        guard segue.identifier == "game" else {return}
         let vc = segue.destination as! StatsViewController
         vc.game = game
     }
@@ -237,7 +315,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var background: UIImageView!
     @IBAction func hole1(_ sender: Any) {
-        if choose && current != 1{
+       if choose && current != 1{
             choose = false
             prev = current
             current = 1
@@ -301,6 +379,14 @@ class GameViewController: UIViewController {
         playHole()
     }
     @IBAction func tiebreak(_ sender: Any) {
+        let alert = UIAlertController(title: "Enter Tiebreaker", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Default action"), style: .default, handler: { _ in
+            self.game.tiebreak = self.hole
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: "No action"), style: .default, handler: { _ in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func end(_ sender: Any) {
         holePrompt.isHidden = true
@@ -309,6 +395,16 @@ class GameViewController: UIViewController {
         randView.isHidden = true
     }
     @IBAction func quit(_ sender: Any) {
+        let alert = UIAlertController(title: "Quit Game?", message: "The current game will not be saved", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Default action"), style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "quitGame", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: "No action"), style: .default, handler: { _ in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+        
     }
     @IBAction func start(_ sender: Any) {
         setPlayers()
@@ -324,7 +420,7 @@ class GameViewController: UIViewController {
                 lst.append(p.text!)
             }
         }
-        game = Game(players: lst)
+        game = GameSub(players: lst)
     }
 
     func playHole(){
@@ -346,6 +442,7 @@ class GameViewController: UIViewController {
             }
             else{
                 players_ss[i].text = String(scores[i])}
+            game.stats[players[i].text!] = scores[i]
             lst.append(Int(players_rs[i].text!)!)
         }
         game.add(hole: lst)
@@ -404,8 +501,79 @@ class GameViewController: UIViewController {
         lab?.isHighlighted = !(lab?.isHighlighted ?? false)
     }
     
+    func seedHoles(){
+        for i in 1...7{
+            for j in 1...7{
+                if i != j{
+                    let h = Hole(context: context)
+                    h.name = "\(i)-\(j)"
+                    h.start = Int16(i)
+                    h.finish = Int16(j)
+                    h.stats = ["total":["times":0,"score":0,"ace":0,"par":0,"bogey":0,"double":0,"mull":0,"worse":0]]
+                }
+            }
+        }
+        print("seeded")
+        appDelegate.saveContext()
+    }
+    
+    func updateHoles(){
+        let box = game.box
+        if  box.count == 0{
+            return
+        }
+        var hole = ""
+        for i in 0...(box.count - 1){
+            if i == 0{
+               hole = "1-\(box[i][0])"
+            }
+            else{
+               hole = "\(box[i-1][0])-\(box[i][0])"
+            }
+            let fetchRequest: NSFetchRequest<Hole> = Hole.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "name == %@", hole)
+            do {
+                let result = try context.fetch(fetchRequest)
+                let h = result.first
+                var tot = h!.stats!["total"]!
+                tot["times"]! += 1
+                for j in 0...(players.count-1){
+                    let s = box[i][j+1]
+                    var ps = h!.stats![game.players[j]]!
+                    ps["times"]! += 1
+                    ps["score"]! += s
+                    tot["score"]! += s
+                    if s == 1{
+                        ps["ace"]! += 1
+                        tot["ace"]! += 1
+                    }
+                    else if s == 2{
+                        ps["par"]! += 1
+                        tot["par"]! += 1
+                    }
+                    else if s==3{
+                        ps["bogey"]! += 1
+                        tot["bogey"]! += 1
+                    }
+                    else if s==4{
+                        ps["double"]! += 1
+                        tot["double"]! += 1
+                    }
+                    else{
+                        ps["worse"]! += 1
+                        tot["worse"]! += 1
+                    }
+                h!.stats![game.players[j]]! = ps
+                }
+                h!.stats!["total"]! = tot
+            }
+            catch{}
+        }
+        appDelegate.saveContext()
+    }
 }
  
+
 
 extension GameViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

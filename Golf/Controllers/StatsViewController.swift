@@ -21,7 +21,7 @@ class StatsViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var game = Game(players: [" "])
+    var game = GameSub(players: [" "])
     
 
 }

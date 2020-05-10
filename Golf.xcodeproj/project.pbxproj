@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		539E470D24675707009BBCF2 /* PlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E470C24675707009BBCF2 /* PlayerStatsViewController.swift */; };
+		53BF5FED24664438008A5FCC /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FE724664438008A5FCC /* Player+CoreDataClass.swift */; };
+		53BF5FEE24664438008A5FCC /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FE824664438008A5FCC /* Player+CoreDataProperties.swift */; };
+		53BF5FEF24664438008A5FCC /* Hole+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FE924664438008A5FCC /* Hole+CoreDataClass.swift */; };
+		53BF5FF024664438008A5FCC /* Hole+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FEA24664438008A5FCC /* Hole+CoreDataProperties.swift */; };
+		53BF5FF124664438008A5FCC /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FEB24664438008A5FCC /* Game+CoreDataClass.swift */; };
+		53BF5FF224664438008A5FCC /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FEC24664438008A5FCC /* Game+CoreDataProperties.swift */; };
 		53E1AF61245E0DFF00379064 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E1AF60245E0DFF00379064 /* AppDelegate.swift */; };
 		53E1AF63245E0DFF00379064 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E1AF62245E0DFF00379064 /* SceneDelegate.swift */; };
 		53E1AF65245E0DFF00379064 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E1AF64245E0DFF00379064 /* ViewController.swift */; };
@@ -19,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		539E470C24675707009BBCF2 /* PlayerStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewController.swift; sourceTree = "<group>"; };
+		53BF5FE724664438008A5FCC /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
+		53BF5FE824664438008A5FCC /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		53BF5FE924664438008A5FCC /* Hole+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hole+CoreDataClass.swift"; sourceTree = "<group>"; };
+		53BF5FEA24664438008A5FCC /* Hole+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hole+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		53BF5FEB24664438008A5FCC /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataClass.swift"; sourceTree = "<group>"; };
+		53BF5FEC24664438008A5FCC /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		53E1AF5D245E0DFF00379064 /* Golf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53E1AF60245E0DFF00379064 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53E1AF62245E0DFF00379064 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53BF5FE6246643D9008A5FCC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				53BF5FE724664438008A5FCC /* Player+CoreDataClass.swift */,
+				53BF5FE824664438008A5FCC /* Player+CoreDataProperties.swift */,
+				53BF5FE924664438008A5FCC /* Hole+CoreDataClass.swift */,
+				53BF5FEA24664438008A5FCC /* Hole+CoreDataProperties.swift */,
+				53BF5FEB24664438008A5FCC /* Game+CoreDataClass.swift */,
+				53BF5FEC24664438008A5FCC /* Game+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		53BF5FF3246646F8008A5FCC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				53E1AF64245E0DFF00379064 /* ViewController.swift */,
+				53E1AF7B245E10DC00379064 /* StatsViewController.swift */,
+				53E1AF79245E0FC900379064 /* GameViewController.swift */,
+				539E470C24675707009BBCF2 /* PlayerStatsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		53E1AF54245E0DFF00379064 = {
 			isa = PBXGroup;
 			children = (
@@ -62,12 +100,11 @@
 		53E1AF5F245E0DFF00379064 /* Golf */ = {
 			isa = PBXGroup;
 			children = (
+				53BF5FF3246646F8008A5FCC /* Controllers */,
+				53BF5FE6246643D9008A5FCC /* Models */,
 				53E1AF60245E0DFF00379064 /* AppDelegate.swift */,
 				53E1AF62245E0DFF00379064 /* SceneDelegate.swift */,
-				53E1AF64245E0DFF00379064 /* ViewController.swift */,
 				53E1AF66245E0DFF00379064 /* Main.storyboard */,
-				53E1AF7B245E10DC00379064 /* StatsViewController.swift */,
-				53E1AF79245E0FC900379064 /* GameViewController.swift */,
 				53E1AF6C245E0E0100379064 /* Assets.xcassets */,
 				53E1AF6E245E0E0100379064 /* LaunchScreen.storyboard */,
 				53E1AF71245E0E0100379064 /* Info.plist */,
@@ -149,9 +186,16 @@
 			files = (
 				53E1AF7A245E0FC900379064 /* GameViewController.swift in Sources */,
 				53E1AF65245E0DFF00379064 /* ViewController.swift in Sources */,
+				53BF5FEF24664438008A5FCC /* Hole+CoreDataClass.swift in Sources */,
+				53BF5FF124664438008A5FCC /* Game+CoreDataClass.swift in Sources */,
+				53BF5FF024664438008A5FCC /* Hole+CoreDataProperties.swift in Sources */,
+				53BF5FF224664438008A5FCC /* Game+CoreDataProperties.swift in Sources */,
+				53BF5FEE24664438008A5FCC /* Player+CoreDataProperties.swift in Sources */,
 				53E1AF6B245E0DFF00379064 /* Golf.xcdatamodeld in Sources */,
 				53E1AF61245E0DFF00379064 /* AppDelegate.swift in Sources */,
 				53E1AF7C245E10DC00379064 /* StatsViewController.swift in Sources */,
+				539E470D24675707009BBCF2 /* PlayerStatsViewController.swift in Sources */,
+				53BF5FED24664438008A5FCC /* Player+CoreDataClass.swift in Sources */,
 				53E1AF63245E0DFF00379064 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
