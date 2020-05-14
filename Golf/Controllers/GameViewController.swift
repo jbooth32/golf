@@ -40,6 +40,10 @@ class GameSub{
     func add(hole:[Int]){
         box.append(hole)
     }
+    
+    func back() -> [Int]{
+        return box.removeLast()
+    }
     func printBox() -> String{
         if box.count == 0{
             return ""
@@ -96,7 +100,7 @@ class GameViewController: UIViewController {
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-
+    var save = -1
     var hole = 1
     var prev = 1
     var current = 1
@@ -298,6 +302,39 @@ class GameViewController: UIViewController {
         player5_rs.text = String(Int(player5_rs.text!)! + 1)
     }
 
+    @IBAction func backButton(_ sender: Any) {
+        if save == -1 {return}
+        let alert = UIAlertController(title: "Go Back", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Default action"), style: .default, handler: { _ in
+            
+            self.hole -= 1
+            self.holeCount.text = String(self.hole)
+            let lst = self.game.back()
+            for i in 0...(self.players.count - 1){
+                self.scores[i] -= lst[i+1] - 2
+                if self.scores[i] > 0{
+                    self.players_ss[i].text = "+\(String(self.scores[i]))"
+                }
+                else{
+                    self.players_ss[i].text = String(self.scores[i])}
+                self.game.stats[self.players[i].text!] = self.scores[i]
+            }
+            for i in 0...(self.players.count - 1){
+                self.players_rs[i].text = "2"
+            }
+            if !self.choose{
+                self.choose = false
+                self.current = self.prev
+                self.prev = self.save
+                self.save = -1
+            }
+            self.playHole()
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: "No action"), style: .default, handler: { _ in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
@@ -308,7 +345,7 @@ class GameViewController: UIViewController {
         player4.delegate = self
         player5.delegate = self
         
-        
+
 
         // Do any additional setup after loading the view.
     }
@@ -317,6 +354,7 @@ class GameViewController: UIViewController {
     @IBAction func hole1(_ sender: Any) {
        if choose && current != 1{
             choose = false
+            save = prev
             prev = current
             current = 1
             playHole()
@@ -325,6 +363,7 @@ class GameViewController: UIViewController {
     @IBAction func hole2(_ sender: Any) {
         if choose && current != 2{
             choose = false
+            save = prev
             prev = current
             current = 2
             playHole()
@@ -333,6 +372,7 @@ class GameViewController: UIViewController {
     @IBAction func hole3(_ sender: Any) {
         if choose && current != 3{
             choose = false
+            save = prev
             prev = current
             current = 3
             playHole()
@@ -341,6 +381,7 @@ class GameViewController: UIViewController {
     @IBAction func hole4(_ sender: Any) {
         if choose && current != 4{
             choose = false
+            save = prev
             prev = current
             current = 4
             playHole()
@@ -349,6 +390,7 @@ class GameViewController: UIViewController {
     @IBAction func hole5(_ sender: Any) {
         if choose && current != 5{
             choose = false
+            save = prev
             prev = current
             current = 5
             playHole()
@@ -357,6 +399,7 @@ class GameViewController: UIViewController {
     @IBAction func hole6(_ sender: Any) {
         if choose && current != 6{
             choose = false
+            save = prev
             prev = current
             current = 6
             playHole()
@@ -365,6 +408,7 @@ class GameViewController: UIViewController {
     @IBAction func hole7(_ sender: Any) {
         if choose && current != 7{
             choose = false
+            save = prev
             prev = current
             current = 7
             playHole()
@@ -372,6 +416,7 @@ class GameViewController: UIViewController {
     }
     @IBAction func randomButton(_ sender: Any) {
         choose = false
+        save = prev
         prev = current
         var lst = [1,2,3,4,5,6,7]
         lst.removeAll {$0 == current}
@@ -535,6 +580,7 @@ class GameViewController: UIViewController {
             do {
                 let result = try context.fetch(fetchRequest)
                 let h = result.first
+                print(hole)
                 var tot = h!.stats!["total"]!
                 tot["times"]! += 1
                 for j in 0...(players.count-1){

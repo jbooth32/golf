@@ -28,7 +28,7 @@ class PlayerStatsViewController: UIViewController {
             score.text = "+" + String(play.score)
         }
         else {score.text = String(play.score)}
-        
+        sPh.text = String(round(100 * (((2 * Double(play.holes)) + Double(play.score))/Double(play.holes))) / 100)
         r_9.text = String(play.lows[1])
         r_18.text = String(play.lows[2])
         r_27.text = String(play.lows[3])
@@ -73,6 +73,7 @@ class PlayerStatsViewController: UIViewController {
     @IBOutlet weak var aces: UILabel!
     @IBOutlet weak var holes: UILabel!
     @IBOutlet weak var score: UILabel!
+    @IBOutlet weak var sPh: UILabel!
     @IBOutlet weak var r_9: UILabel!
     @IBOutlet weak var r_18: UILabel!
     @IBOutlet weak var r_27: UILabel!
