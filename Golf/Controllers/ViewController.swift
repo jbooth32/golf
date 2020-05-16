@@ -24,6 +24,8 @@ class ViewController: UIViewController {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var vcP = [Player]()
+    var sort = ""
+    var avg = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +33,15 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "stats" else {return}
-        let vc = segue.destination as! PlayerStatsViewController
-        vc.plays = vcP
+        if segue.identifier == "stats" {
+            let vc = segue.destination as! PlayerStatsViewController
+            vc.plays = vcP}
+        else if segue.identifier == "holeStats"{
+            let vc = segue.destination as! HoleCollectionViewController
+            vc.sort = sort
+            vc.avg = avg
+            
+        }
     }
 
     @IBAction func stats(_ sender: Any) {
@@ -53,5 +61,36 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func holes(_ sender: Any) {
+        let alert = UIAlertController(title: "Sort By", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Order", comment:""), style: .default, handler: { _ in
+                    self.sort = "name"
+                    self.performSegue(withIdentifier: "holeStats", sender: self)
+                }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Avg Score", comment:""), style: .default, handler: { _ in
+            self.avg = true
+            self.sort = "name"
+            self.performSegue(withIdentifier: "holeStats", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Times Played", comment:""), style: .default, handler: { _ in
+            self.sort = "times"
+            self.performSegue(withIdentifier: "holeStats", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Hole-in-One", comment:""), style: .default, handler: { _ in
+            self.sort = "ace"
+            self.performSegue(withIdentifier: "holeStats", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Bogey", comment:""), style: .default, handler: { _ in
+            self.sort = "bogey"
+            self.performSegue(withIdentifier: "holeStats", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Double Bogey", comment:""), style: .default, handler: { _ in
+            self.sort = "double"
+            self.performSegue(withIdentifier: "holeStats", sender: self)
+        }))
+    
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 

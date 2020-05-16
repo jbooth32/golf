@@ -4,14 +4,101 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Hole Collection View Controller-->
+        <scene sceneID="lxq-ax-zsl">
+            <objects>
+                <collectionViewController id="t8c-VY-PiO" customClass="HoleCollectionViewController" customModule="Golf" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" id="wsJ-rp-7MI">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.15622636009999999" green="0.67770463199999997" blue="0.091434887909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="NLC-7G-ezd">
+                            <size key="itemSize" width="178" height="180"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HoleCell" id="yPP-CC-Gsr" customClass="HoleCollectionViewCell" customModule="Golf" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="178" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aVi-g3-pyh">
+                                    <rect key="frame" x="0.0" y="0.0" width="178" height="180"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePb-Mi-Vmq">
+                                            <rect key="frame" x="15" y="8" width="150" height="144"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie3-ev-Fhp">
+                                            <rect key="frame" x="39" y="151" width="103" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="178" height="180"/>
+                                <connections>
+                                    <outlet property="holeImg" destination="ePb-Mi-Vmq" id="4Mu-v4-h93"/>
+                                    <outlet property="lowLabel" destination="Ie3-ev-Fhp" id="PM5-s0-9xK"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SectionHeader" id="ZVp-Q7-E9o" customClass="CollectionHeaderView" customModule="Golf" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="896" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkt-tg-4zn">
+                                    <rect key="frame" x="199" y="12" width="418" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <connections>
+                                <outlet property="label" destination="Jkt-tg-4zn" id="laA-LT-S6R"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="t8c-VY-PiO" id="z2p-Wr-Fag"/>
+                            <outlet property="delegate" destination="t8c-VY-PiO" id="S2z-RY-ACC"/>
+                            <outletCollection property="gestureRecognizers" destination="bpl-mE-a52" appends="YES" id="6MS-w5-SaS"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="nqa-X3-Tc6">
+                        <connections>
+                            <outlet property="titleView" destination="wsJ-rp-7MI" id="xB7-JY-HDH"/>
+                        </connections>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="NzN-dH-8gn" kind="show" identifier="holeSelect" id="a8C-AJ-sat"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yQx-sX-9gm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer delaysTouchesBegan="YES" minimumNumberOfTouches="1" id="bpl-mE-a52">
+                    <scrollTypes key="allowedScrollTypesMask" continuous="YES"/>
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="swipeBack:" destination="t8c-VY-PiO" id="SPa-AI-F3Z"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="156.69642857142856" y="-817.39130434782612"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Golf" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -25,22 +112,34 @@
                                     <segue destination="4ID-Gx-Jl9" kind="show" id="cAo-S3-s6y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJt-kD-Ha5">
-                                <rect key="frame" x="430" y="251" width="36" height="30"/>
-                                <state key="normal" title="Stats">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJt-kD-Ha5">
+                                <rect key="frame" x="461" y="253" width="82" height="30"/>
+                                <state key="normal" title="Player Stats">
                                     <color key="titleColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="stats:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rfc-2k-q0A"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAL-N2-S3r">
+                                <rect key="frame" x="361" y="253" width="71" height="30"/>
+                                <state key="normal" title="Hole Stats">
+                                    <color key="titleColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="holes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GFR-0x-uWg"/>
+                                    <segue destination="t8c-VY-PiO" kind="presentation" identifier="holeStats" modalTransitionStyle="flipHorizontal" id="0vh-0d-K3g"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.15622636005579771" green="0.67770463197969544" blue="0.091434887912761761" alpha="0.80198523119999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.15622636005579771" green="0.67770463197969544" blue="0.091434887912761761" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WXc-9a-EHa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1Ur-iR-rps"/>
                             <constraint firstItem="uJt-kD-Ha5" firstAttribute="top" secondItem="WXc-9a-EHa" secondAttribute="bottom" constant="21" id="Bgg-ik-MDI"/>
-                            <constraint firstItem="uJt-kD-Ha5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="awx-zU-TYK"/>
+                            <constraint firstItem="uJt-kD-Ha5" firstAttribute="leading" secondItem="OAL-N2-S3r" secondAttribute="trailing" constant="29" id="L2M-jy-JHF"/>
+                            <constraint firstItem="OAL-N2-S3r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="317" id="RCR-Lw-AbM"/>
                             <constraint firstItem="WXc-9a-EHa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="i14-H4-K3A"/>
+                            <constraint firstItem="OAL-N2-S3r" firstAttribute="baseline" secondItem="uJt-kD-Ha5" secondAttribute="baseline" id="ubP-Zc-ltO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -1206,7 +1305,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.23414166787481749" green="1" blue="0.13441279828741304" alpha="0.80198523116438358" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.15622636009999999" green="0.67770463199999997" blue="0.091434887909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="qTL-0K-IGP" firstAttribute="height" secondItem="AWE-Xt-kCQ" secondAttribute="height" multiplier="0.0467706" placeholder="YES" id="JJq-eB-ezO"/>
                                         </constraints>
@@ -1249,11 +1348,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3L-YU-Zdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809.59821428571422" y="824.63768115942037"/>
+            <point key="canvasLocation" x="842" y="916"/>
+        </scene>
+        <!--Hole Stat View Controller-->
+        <scene sceneID="ezy-6O-sKG">
+            <objects>
+                <viewController id="NzN-dH-8gn" customClass="HoleStatViewController" customModule="Golf" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="hl1-ZJ-2B0">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4hI-Bh-X32">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PI-RN-Xsb">
+                                <rect key="frame" x="56" y="72" width="776" height="321"/>
+                                <color key="backgroundColor" red="0.077620830279999997" green="0.29340498100000001" blue="0.073340453759999993" alpha="0.80778228240410965" colorSpace="custom" customColorSpace="sRGB"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15622636009999999" green="0.67770463199999997" blue="0.091434887909999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3PI-RN-Xsb" firstAttribute="leading" secondItem="CJm-dy-Z6b" secondAttribute="leading" constant="12" id="6wi-4T-gSF"/>
+                            <constraint firstItem="3PI-RN-Xsb" firstAttribute="top" secondItem="CJm-dy-Z6b" secondAttribute="top" constant="72" id="K9D-jD-267"/>
+                            <constraint firstItem="3PI-RN-Xsb" firstAttribute="centerX" secondItem="hl1-ZJ-2B0" secondAttribute="centerX" constant="-4" id="Kcy-Gt-dWa"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="3PI-RN-Xsb" secondAttribute="bottom" id="N1V-wS-y4X"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CJm-dy-Z6b"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Evp-fb-Tul" appends="YES" id="S6h-jb-erG"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="xxW-23-gS1"/>
+                    <connections>
+                        <outlet property="img" destination="4hI-Bh-X32" id="GAv-MH-bat"/>
+                        <outlet property="stack" destination="3PI-RN-Xsb" id="hfP-fe-Xmp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CoY-au-OIk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer delaysTouchesBegan="YES" minimumNumberOfTouches="1" id="Evp-fb-Tul">
+                    <scrollTypes key="allowedScrollTypesMask" continuous="YES"/>
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="swipeBack:" destination="NzN-dH-8gn" id="iqM-EC-7da"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="833.70535714285711" y="-817.39130434782612"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cAo-S3-s6y"/>
+        <segue reference="Emr-RO-21B"/>
         <segue reference="UeP-Xo-tKE"/>
     </inferredMetricsTieBreakers>
     <resources>

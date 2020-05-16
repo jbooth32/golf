@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53435541246DF9E0001D4F0D /* HoleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53435540246DF9E0001D4F0D /* HoleCollectionViewController.swift */; };
+		53435543246E307C001D4F0D /* HoleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53435542246E307C001D4F0D /* HoleCollectionViewCell.swift */; };
+		53887A35246F378000348D31 /* HoleStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53887A34246F378000348D31 /* HoleStatViewController.swift */; };
+		53887A37246F6D7B00348D31 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53887A36246F6D7A00348D31 /* CollectionHeaderView.swift */; };
 		539E470D24675707009BBCF2 /* PlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E470C24675707009BBCF2 /* PlayerStatsViewController.swift */; };
 		53BF5FED24664438008A5FCC /* Player+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FE724664438008A5FCC /* Player+CoreDataClass.swift */; };
 		53BF5FEE24664438008A5FCC /* Player+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BF5FE824664438008A5FCC /* Player+CoreDataProperties.swift */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53435540246DF9E0001D4F0D /* HoleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleCollectionViewController.swift; sourceTree = "<group>"; };
+		53435542246E307C001D4F0D /* HoleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleCollectionViewCell.swift; sourceTree = "<group>"; };
+		53887A34246F378000348D31 /* HoleStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleStatViewController.swift; sourceTree = "<group>"; };
+		53887A36246F6D7A00348D31 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		539E470C24675707009BBCF2 /* PlayerStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewController.swift; sourceTree = "<group>"; };
 		53BF5FE724664438008A5FCC /* Player+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataClass.swift"; sourceTree = "<group>"; };
 		53BF5FE824664438008A5FCC /* Player+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -76,7 +84,11 @@
 				53E1AF64245E0DFF00379064 /* ViewController.swift */,
 				53E1AF7B245E10DC00379064 /* StatsViewController.swift */,
 				53E1AF79245E0FC900379064 /* GameViewController.swift */,
+				53435542246E307C001D4F0D /* HoleCollectionViewCell.swift */,
 				539E470C24675707009BBCF2 /* PlayerStatsViewController.swift */,
+				53435540246DF9E0001D4F0D /* HoleCollectionViewController.swift */,
+				53887A34246F378000348D31 /* HoleStatViewController.swift */,
+				53887A36246F6D7A00348D31 /* CollectionHeaderView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,10 +200,14 @@
 				53E1AF65245E0DFF00379064 /* ViewController.swift in Sources */,
 				53BF5FEF24664438008A5FCC /* Hole+CoreDataClass.swift in Sources */,
 				53BF5FF124664438008A5FCC /* Game+CoreDataClass.swift in Sources */,
+				53435541246DF9E0001D4F0D /* HoleCollectionViewController.swift in Sources */,
 				53BF5FF024664438008A5FCC /* Hole+CoreDataProperties.swift in Sources */,
+				53435543246E307C001D4F0D /* HoleCollectionViewCell.swift in Sources */,
 				53BF5FF224664438008A5FCC /* Game+CoreDataProperties.swift in Sources */,
+				53887A37246F6D7B00348D31 /* CollectionHeaderView.swift in Sources */,
 				53BF5FEE24664438008A5FCC /* Player+CoreDataProperties.swift in Sources */,
 				53E1AF6B245E0DFF00379064 /* Golf.xcdatamodeld in Sources */,
+				53887A35246F378000348D31 /* HoleStatViewController.swift in Sources */,
 				53E1AF61245E0DFF00379064 /* AppDelegate.swift in Sources */,
 				53E1AF7C245E10DC00379064 /* StatsViewController.swift in Sources */,
 				539E470D24675707009BBCF2 /* PlayerStatsViewController.swift in Sources */,
