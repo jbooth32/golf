@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import AVFoundation
 
 class GameSub{
     var box: [[Int]]
@@ -99,6 +99,7 @@ class GameViewController: UIViewController {
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let synthesizer = AVSpeechSynthesizer()
     
     var save = -1
     var hole = 1
@@ -107,6 +108,10 @@ class GameViewController: UIViewController {
     var choose = true
     var game = GameSub(players: [])
     
+    @IBAction func holeStats(_ sender: Any) {
+        if current == prev{return}
+        performSegue(withIdentifier: "hole", sender: self)
+    }
     var scores = [0,0,0,0,0]
     var players = [UITextField]()
     @IBOutlet weak var player1: UITextField!
@@ -240,10 +245,23 @@ class GameViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        guard segue.identifier == "game" else {return}
+        if segue.identifier == "game" {
         let vc = segue.destination as! StatsViewController
-        vc.game = game
+            vc.game = game}
+        if segue.identifier == "hole"{
+            let name = "\(prev)-\(current)"
+            let vc = segue.destination as! HoleStatViewController
+            let fetchRequest: NSFetchRequest<Hole> = Hole.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+            var chosen = Hole()
+            do {
+                let holes = try context.fetch(fetchRequest)
+                chosen = holes[0]
+            }
+            catch{}
+            vc.hole = chosen}
     }
+    
     @IBAction func exitBfalse(_ sender: Any) {
         exitView.isHidden = true
         exitViewb.isHidden = true
@@ -436,6 +454,7 @@ class GameViewController: UIViewController {
     @IBAction func end(_ sender: Any) {
         holePrompt.isHidden = true
         exitView.isHidden = false
+        print(exit)
         exitViewb.isHidden = false
         randView.isHidden = true
     }
@@ -472,8 +491,42 @@ class GameViewController: UIViewController {
         background.image = UIImage(named: "\(String(prev) + "-" + String(current))")
         togglePrompt(b:false)
         randView.isHidden = true
+        speakHole()
         holePrompt.text = "Enter Scores"
         addButton.isEnabled = true
+    }
+    
+    func speakHole(){
+        var name = ""
+        let h = "\(prev)-\(current)"
+        if h == "2-1" || h == "3-1" || h == "4-1" || h == "5-1" || h == "6-1" || h == "7-1"{
+            name = "bottom"
+        }
+        else if h == "1-2" || h == "3-2" || h == "4-2" || h == "5-2" || h == "6-2" || h == "7-2"{
+            name = "start"
+        }
+        else if h == "1-3" || h == "2-3" || h == "4-3" || h == "5-3" || h == "6-3" || h == "7-3"{
+            name = "rocky top"
+        }
+        else if h == "1-4" || h == "2-4" || h == "3-4" || h == "5-4" || h == "6-4" || h == "7-4"{
+            name = "top"
+        }
+        else if h == "1-5" || h == "2-5" || h == "4-5" || h == "6-5" || h == "7-5" || h == "3-5"{
+            name = "middle"
+        }
+        else if h == "1-6" || h == "2-6" || h == "4-6" || h == "5-6" || h == "3-6" || h == "7-6"{
+            name = "low"
+        }
+        else if h == "1-7" || h == "2-7" || h == "4-7" || h == "5-7" || h == "6-7" || h == "3-7"{
+            name = "corner"
+        }
+        if current == save{
+            name = "back"
+        }
+        name = "Hole   \(hole):      \(name)"
+        let utterance = AVSpeechUtterance(string: name)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        synthesizer.speak(utterance)
     }
     
     @IBAction func addScore(_ sender: Any) {
