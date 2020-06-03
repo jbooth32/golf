@@ -403,7 +403,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="shw-as-RfX">
                                 <rect key="frame" x="50" y="12" width="62" height="81.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hole" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlv-fd-HfK">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hole" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlv-fd-HfK">
                                         <rect key="frame" x="0.0" y="0.0" width="62" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                         <nil key="textColor"/>
@@ -822,6 +822,7 @@
                         <outlet property="exitView" destination="j7B-N9-i9w" id="0HL-mc-qzF"/>
                         <outlet property="exitViewb" destination="Tpq-HG-vce" id="5IK-aw-K48"/>
                         <outlet property="holeCount" destination="n9D-XM-NL0" id="eO9-ld-Yll"/>
+                        <outlet property="holeName" destination="Zlv-fd-HfK" id="aYE-dk-WZ2"/>
                         <outlet property="holePrompt" destination="58r-on-Elc" id="efM-po-0Md"/>
                         <outlet property="options" destination="ECI-oO-VM5" id="7yn-F7-5d4"/>
                         <outlet property="player1" destination="DAj-YB-ToD" id="7jm-wi-vDi"/>

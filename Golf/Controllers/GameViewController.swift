@@ -273,6 +273,7 @@ class GameViewController: UIViewController {
     }
     
     @IBOutlet weak var holeCount: UILabel!
+    @IBOutlet weak var holeName: UILabel!
     
     @IBOutlet weak var startView: UIStackView!
     
@@ -525,7 +526,8 @@ class GameViewController: UIViewController {
         }
         name = "Hole   \(hole):      \(name)"
         let utterance = AVSpeechUtterance(string: name)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.voice = getVoice()
+        utterance.rate = 0.4
         synthesizer.speak(utterance)
     }
     
@@ -592,13 +594,26 @@ class GameViewController: UIViewController {
                 p_sv[i]?.isHidden = false
             }
         }
-        
+        let holeTap = UITapGestureRecognizer(target: self, action: #selector(holeTaps(sender:)))
+        holeTap.numberOfTapsRequired = 2
+        holeName.addGestureRecognizer(holeTap)
     }
     @objc func tapFunction(sender:UITapGestureRecognizer) {
         let lab = sender.view as? UILabel
         lab?.isHighlighted = !(lab?.isHighlighted ?? false)
+        if lab!.isHighlighted{
+            let utterance = AVSpeechUtterance(string: "\(lab!.text ?? "") has used their mulligan")
+            utterance.voice = getVoice()
+            synthesizer.speak(utterance)}
+        
     }
     
+    @objc func holeTaps(sender:UITapGestureRecognizer) {
+        let utterance = AVSpeechUtterance(string: "Watch your fucking language!")
+        utterance.volume = 1
+        utterance.voice = getVoice()
+        synthesizer.speak(utterance)
+    }
     func seedHoles(){
         for i in 1...7{
             for j in 1...7{
@@ -613,6 +628,11 @@ class GameViewController: UIViewController {
         }
         print("seeded")
         appDelegate.saveContext()
+    }
+    
+    func getVoice() -> AVSpeechSynthesisVoice{
+        let voices = ["en-AU","en-GB", "en-IE", "en-US", "en-ZA", "en-IN"]
+        return AVSpeechSynthesisVoice(language: voices.randomElement())!
     }
     
     func updateHoles(){
